@@ -9,6 +9,27 @@ Reutilizando el código anterior, crear la función esImpar.
 
 *******************************************************************************/
 
-printf ("HOLA");
+$numero = 5;
+if(esPar($numero))
+	printf("El numero $numero es PAR<br/>");
+if(esImpar($numero))
+	printf("El numero $numero es IMPAR<br/>");
+
+$numero = 10;
+if(esPar($numero))
+	printf("El numero $numero es PAR<br/>");
+if(esImpar($numero))
+	printf("El numero $numero es IMPAR<br/>");
+
+
+function esPar(int $valor){
+	if($valor%2==1)
+		return FALSE;
+	else
+		return TRUE;
+}
+function esImpar(int $valor){
+	return !esPar($valor);
+}
 
 ?>
