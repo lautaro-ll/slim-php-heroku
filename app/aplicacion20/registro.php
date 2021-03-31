@@ -15,16 +15,19 @@ Hacer los métodos necesarios en la clase usuario
 //include "usuario.php";
 class Usuario
 {
+    public $arrayUsuario = array("nombre"=>null,"clave"=>null,"mail"=>null);
+    /*
     public $nombre;
     public $clave;
     public $mail;
-
+    */
     static function _validarUsuario(Usuario $usuario) 
     {
-        if(isset($usuario->nombre) && isset($usuario->clave)  && isset($usuario->mail))
+        if(isset($usuario->arrayUsuario["nombre"]) && isset($usuario->arrayUsuario["clave"])  && isset($usuario->arrayUsuario["mail"]))
         {      
             $archivoUsuarios = fopen("usuarios.csv", "a");
-            fwrite($archivoUsuarios, "$usuario->nombre, $usuario->clave, $usuario->mail \n");
+            fwrite($archivoUsuarios, "\n".implode(",",$usuario->arrayUsuario));
+            //fwrite($archivoUsuarios, "$usuario->nombre, $usuario->clave, $usuario->mail \n");
             fclose($archivoUsuarios);  
         }
         else{
@@ -34,9 +37,9 @@ class Usuario
 }
 
 $nuevoUsuario = new Usuario();
-$nuevoUsuario->nombre = $_POST["nombre"];
-$nuevoUsuario->clave = $_POST["clave"];
-$nuevoUsuario->mail = $_POST["mail"];
+$nuevoUsuario->arrayUsuario["nombre"] = $_POST["nombre"];
+$nuevoUsuario->arrayUsuario["clave"] = $_POST["clave"];
+$nuevoUsuario->arrayUsuario["mail"] = $_POST["mail"];
 
 echo Usuario::_validarUsuario($nuevoUsuario);
 
