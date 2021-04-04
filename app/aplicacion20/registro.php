@@ -13,6 +13,8 @@ Hacer los métodos necesarios en la clase usuario
 */
 require "usuario.php";
 
+echo "Aplicación No 20 (Registro CSV)<br/>";
+
 if(isset($_POST["usuario"]))
 {
     $nombre = $_POST["usuario"];
