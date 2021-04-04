@@ -7,10 +7,10 @@ class Usuario
     public $mail;
     static $listado = array();
 
-    function __construct($nombre = "",$usuario = "",$mail = "")
+    function __construct($nombre = "",$clave = "",$mail = "")
     {
         $this->nombre = $nombre;
-        $this->usuario = $usuario;
+        $this->clave = $clave;
         $this->mail = $mail;
     }
     
@@ -19,7 +19,7 @@ class Usuario
         if(!file_exists("usuarios.csv") || is_writable("usuarios.csv")) 
         {
             $archivo = fopen("usuarios.csv", "a");
-            fwrite($archivo, "$this->nombre, $this->usuario, $this->mail\n");
+            fwrite($archivo, "$this->nombre, $this->clave, $this->mail\n");
             fclose($archivo);
             return 1;
         }
@@ -30,10 +30,13 @@ class Usuario
 
     static function RetornarArrayDelCSV()
     {
-        if($archivo = fopen("usuarios.csv","r") !== FALSE) {
+        if(($archivo = fopen("usuarios.csv","r")) !== FALSE) {
             $i = 0;
-            while (($datos = fgetcsv($archivo, 0, ",")) !== FALSE) {
-                $listado[$i] = $datos;
+            while (($datos = fgetcsv($archivo, 1000, ",")) !== FALSE) {
+                if(count($datos)==3) {
+                    $nuevoUsuario = new Usuario($datos[0],$datos[1],$datos[2]);
+                }
+                $listado[$i] = $nuevoUsuario;
                 $i++;
             } 
             fclose($archivo);
@@ -51,12 +54,10 @@ class Usuario
             echo "<ul>";
             foreach($listado as $usuario)
             {
-                echo "<li>";
-                foreach($usuario as $dato)
-                {
-                    echo $dato." ";
-                }
-                echo "</li>";
+                echo "<li>".$usuario->nombre."</li>";
+                echo "<li>".$usuario->clave."</li>";
+                echo "<li>".$usuario->mail."</li>";
+                echo "<br/>";
             }
             echo "</ul>";
         }

@@ -17,7 +17,7 @@ echo "Aplicación No 20 (Registro CSV)<br/>";
 
 if(isset($_POST["usuario"]))
 {
-    $nombre = $_POST["usuario"];
+    $nombre = $_POST["nombre"];
     $clave = $_POST["clave"];
     $mail = $_POST["mail"];
 

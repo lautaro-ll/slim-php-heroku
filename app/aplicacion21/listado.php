@@ -23,7 +23,7 @@ luego mostrar ese array en formato lista
 */
 
 require "usuario.php";
-echo "Aplicación No 21 (Listado CSV y array de usuarios)";
+echo "Aplicación No 21 (Listado CSV y array de usuarios)<br/>";
 
 if(isset($_GET["listado"]))
 {
@@ -38,6 +38,10 @@ if(isset($_GET["listado"]))
             echo "Listado incorrecto";
             break;
     }
+}
+else
+{
+    echo "No se ingresó listado<br/>";
 }
 
 ?>

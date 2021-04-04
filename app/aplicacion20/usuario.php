@@ -6,10 +6,10 @@ class Usuario
     public $clave;
     public $mail;
 
-    function __construct($nombre = "",$usuario = "",$mail = "")
+    function __construct($nombre = "",$clave = "",$mail = "")
     {
         $this->nombre = $nombre;
-        $this->usuario = $usuario;
+        $this->clave = $clave;
         $this->mail = $mail;
     }
     
@@ -18,7 +18,7 @@ class Usuario
         if(!file_exists("usuarios.csv") || is_writable("usuarios.csv")) 
         {
             $archivo = fopen("usuarios.csv", "a");
-            fwrite($archivo, "$this->nombre, $this->usuario, $this->mail\n");
+            fwrite($archivo, "$this->nombre, $this->clave, $this->mail\n");
             fclose($archivo);
             return 1;
         }
