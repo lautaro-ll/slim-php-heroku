@@ -11,36 +11,22 @@ retorna si se pudo agregar o no.
 Cada usuario se agrega en un renglón diferente al anterior.
 Hacer los métodos necesarios en la clase usuario
 */
+require "usuario.php";
 
-//include "usuario.php";
-class Usuario
+if(isset($_POST["usuario"]))
 {
-    public $arrayUsuario = array("nombre"=>null,"clave"=>null,"mail"=>null);
-    /*
-    public $nombre;
-    public $clave;
-    public $mail;
-    */
-    static function _validarUsuario(Usuario $usuario) 
-    {
-        if(isset($usuario->arrayUsuario["nombre"]) && isset($usuario->arrayUsuario["clave"])  && isset($usuario->arrayUsuario["mail"]))
-        {      
-            $archivoUsuarios = fopen("usuarios.csv", "a");
-            fwrite($archivoUsuarios, "\n".implode(",",$usuario->arrayUsuario));
-            //fwrite($archivoUsuarios, "$usuario->nombre, $usuario->clave, $usuario->mail \n");
-            fclose($archivoUsuarios);  
-        }
-        else{
-            echo "Faltan datos.";
-        }
+    $nombre = $_POST["usuario"];
+    $clave = $_POST["clave"];
+    $mail = $_POST["mail"];
+
+    $nuevoUsuario = new Usuario($nombre, $clave, $mail);
+
+    if($nuevoUsuario->GuardarEnCSV()) {
+        echo "Se pudo agregar usuario <br/>";
+    }
+    else {
+        echo "No se pudo agregar usuario <br/>";
     }
 }
-
-$nuevoUsuario = new Usuario();
-$nuevoUsuario->arrayUsuario["nombre"] = $_POST["nombre"];
-$nuevoUsuario->arrayUsuario["clave"] = $_POST["clave"];
-$nuevoUsuario->arrayUsuario["mail"] = $_POST["mail"];
-
-echo Usuario::_validarUsuario($nuevoUsuario);
 
 ?>
