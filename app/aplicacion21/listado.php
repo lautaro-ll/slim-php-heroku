@@ -21,16 +21,23 @@ leer el archivo, cada linea guardarla en un objeto Usuario
 y guardar todos los usuarios en un array
 luego mostrar ese array en formato lista
 */
-$miArchivo = fopen("usuarios.csv","r");
-$listado = explode(",", fread($miArchivo,filesize("usuarios.csv")));
-//$listado = array("nombre"=>$_GET["nombre"],"clave"=>$_GET["clave"],"mail"=>$_GET["mail"]);
-echo "<ul>";
-foreach($listado as $k => $valor)
+
+require "usuario.php";
+echo "Aplicación No 21 (Listado CSV y array de usuarios)";
+
+if(isset($_GET["listado"]))
 {
-    if($k==0)
-        echo "<br/>".$k;
-    echo "<li>".$valor."</li>";
+    $listadoIngresado = $_GET["listado"];
+    switch($listadoIngresado)
+    {
+        case "usuarios":
+            $arrayUsuarios = usuario::RetornarArrayDelCSV();
+            usuario::DibujarListado($arrayUsuarios);
+            break;
+        default:
+            echo "Listado incorrecto";
+            break;
+    }
 }
-echo "</ul>";
 
 ?>
