@@ -5,13 +5,60 @@ class Usuario
     public $nombre;
     public $clave;
     public $mail;
+    public $id;
+    public $fechaDeRegistro;
+    public $archivo;
+
     static $listado = array();
 
-    function __construct($nombre = "",$clave = "",$mail = "")
+    function __construct($nombre = "",$clave = "",$mail = "",$id = "",$fechaDeRegistro = "")
     {
+        //usar setter y getter
         $this->nombre = $nombre;
         $this->clave = $clave;
         $this->mail = $mail;
+        $this->id = $id;
+        $this->fechaDeRegistro = $fechaDeRegistro;
+    }
+
+    function GuardarArchivo ($archivo)
+    {
+        $this->archivo = $archivo;
+
+        $destino = "Fotos/".$this->archivo["archivo"]["name"];
+
+        if (file_exists($destino)) 
+        {
+            return 0;
+            //echo "<br/>El archivo ya existe.";
+        }
+
+        if (move_uploaded_file($this->archivo["archivo"]["tmp_name"], $destino)) 
+        {
+            return 1;
+            //echo "<br/>El archivo ha sido subido exitosamente.";
+        } 
+        else 
+        {
+            return -1;
+            //echo "<br/>Lamentablemente ocurrio un error y no se pudo subir el archivo.";
+        }
+    }
+
+    function GuardarEnJSON ()
+    {
+        if(!file_exists("usuarios.json") || is_writable("usuarios.json")) 
+        {
+            
+            $archivo = fopen("usuarios.json", "a");
+            fwrite($archivo, json_encode($this)."<br/>");
+            fclose($archivo);
+            
+            return 1;
+        }
+        else {
+            return 0;
+        }
     }
 
     function GuardarEnCSV ()
