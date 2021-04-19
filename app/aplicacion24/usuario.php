@@ -69,6 +69,27 @@ class Usuario
         }
     }
 
+    static function RetornarArrayDelJSON()
+    {
+        if(($archivo = fopen("usuarios.json","r")) !== FALSE) {
+
+            $i = 0;
+            while(!feof($archivo))
+            {
+                $jsonObj = fgets($archivo);
+                $usuario = json_decode($jsonObj);
+                if($usuario != NULL)
+                    $listado[$i] = $usuario;
+                $i++;                      
+            }
+            fclose($archivo);
+            return $listado;
+        }
+        else {
+            return null;
+        }
+    }
+
     static function RetornarArrayDelCSV()
     {
         if(($archivo = fopen("usuarios.csv","r")) !== FALSE) {

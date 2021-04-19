@@ -26,12 +26,18 @@ if(isset($_POST["nombre"]) && isset($_POST["clave"]) && isset($_POST["mail"]) &&
     $fechaDeRegistro = date("d.m.Y");
     $nuevoIngresado = new Usuario($nombre, $clave, $mail, $id, $fechaDeRegistro, $archivo);
 
-    if($nuevoIngresado->GuardarEnJSON()) 
-    {
+    if($nuevoIngresado->GuardarEnJSON()) {
         echo "Se pudo agregar usuario. <br/>";
     }
     else {
         echo "No se pudo agregar usuario. <br/>";
+    }
+
+    if($nuevoIngresado->GuardarArchivo($archivo)) {
+        echo "<br/>El archivo ha sido subido exitosamente.";
+    }
+    else {
+        echo "<br/>El archivo no pudo ser subido.";
     }
 
 } 
