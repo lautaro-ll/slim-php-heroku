@@ -11,6 +11,7 @@ guardando los datos la base de datos retorna si se pudo agregar o no.
 
 */
 include "usuario.php";
+echo "Aplicación No 27 (Registro BD)<br/>";
 
 if(isset($_POST["nombre"]) && isset($_POST["apellido"]) && isset($_POST["clave"]) && isset($_POST["mail"]) && isset($_POST["localidad"]))
 {
@@ -21,7 +22,7 @@ if(isset($_POST["nombre"]) && isset($_POST["apellido"]) && isset($_POST["clave"]
     $fechaDeRegistro = date("Y-m-d");
     $localidad = $_POST["localidad"];
 
-    $nuevoIngresado = new Usuario($nombre, $apellido, $clave, $mail, $fechaDeRegistro, $localidad);
+    $nuevoIngresado = nuevoUsuario($nombre, $apellido, $clave, $mail, $fechaDeRegistro, $localidad);
 
     if($nuevoIngresado->AltaUsuario() != NULL) {
         echo "Se pudo agregar usuario. <br/>";
@@ -34,5 +35,6 @@ else
 {
     echo "No se ingresó usuario.";
 }
+
 
 ?>
