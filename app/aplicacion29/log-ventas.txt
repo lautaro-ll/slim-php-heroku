@@ -1,0 +1,2 @@
+Lucas compró 6 unidades de Producto Tres, Serie: 3 por 300 pesos. Stock restante: 42 unidades.
+Lucas compró 6 unidades de Producto Tres, Serie: 3 por 300 pesos. Stock restante: 36 unidades.
