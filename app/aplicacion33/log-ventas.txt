@@ -1,0 +1,3 @@
+Lucas compró 6 unidades de Producto Tres, Serie: 3 por 300 pesos. Stock restante: 42 unidades.
+Lucas compró 6 unidades de Producto Tres, Serie: 3 por 300 pesos. Stock restante: 36 unidades.
+Deloris compró 10 unidades de Agua, Serie: 122546 por 20 pesos. Stock restante: 8 unidades.

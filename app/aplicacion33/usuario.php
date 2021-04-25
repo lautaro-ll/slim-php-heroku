@@ -23,6 +23,57 @@ class Usuario
         $this->localidad = $localidad;
     }
 
+    static function ActualizarClaveEnBd($usuario, $claveNueva) {
+
+        $objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
+        $consulta =$objetoAccesoDato->RetornarConsulta("UPDATE usuario SET clave=:clave WHERE mail=:mail");
+        $consulta->bindValue(':mail',$usuario->mail, PDO::PARAM_STR);
+        $consulta->bindValue(':clave',$claveNueva, PDO::PARAM_INT);
+
+        return $consulta->execute();
+    }
+
+    static function TraerUsuarioDeBd($idUsuario) {
+        $listado = Usuario::RetornarUsuarios();
+        if($listado != NULL) {
+            for($i=0;$i<sizeof($listado);$i++) 
+            {
+                if($listado[$i]->id == $idUsuario) 
+                {
+                    return $listado[$i];
+                }
+            }
+        }
+        return false;
+    }
+
+    static function ValidarUsuarioBd($mail, $clave) 
+    {
+        if($mail!=NULL && $clave!=NULL)
+        {
+            $arrayUsuarios = Usuario::RetornarUsuarios();
+            if(!is_null($arrayUsuarios)) 
+            {
+                foreach($arrayUsuarios as $usuario)
+                {
+                    if($usuario->mail == $mail)
+                    {
+                        if($usuario->clave == $clave) {
+                            //echo "Mail y Clave correctos<br/>";
+                            return 1;
+                        }
+                        else {
+                            //echo "Clave errónea<br/>";
+                            return -1;
+                        }
+                    }
+                }
+            }
+        }
+        //echo "Usuario inexistente<br/>";
+        return 0;
+    }
+
     static function RetornarUsuarios ()
     {
         $objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
@@ -35,8 +86,7 @@ class Usuario
     function AltaUsuario ()
     {
         $objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-        $consulta =$objetoAccesoDato->RetornarConsulta("INSERT INTO `usuario`(`nombre`, `apellido`, `clave`, `mail`, `fecha_de_registro`, `localidad`) 
-                                                                    VALUES (:nombre,:apellido,:clave,:mail,:fecha_de_registro,:localidad)");
+        $consulta =$objetoAccesoDato->RetornarConsulta("INSERT INTO `usuario`(`nombre`, `apellido`, `clave`, `mail`, `fecha_de_registro`, `localidad`) VALUES (:nombre,:apellido,:clave,:mail,:fecha_de_registro,:localidad)");
         $consulta->bindValue(':nombre',$this->nombre, PDO::PARAM_STR);
         $consulta->bindValue(':apellido',$this->apellido, PDO::PARAM_STR);
         $consulta->bindValue(':clave',$this->clave, PDO::PARAM_INT);
@@ -46,7 +96,7 @@ class Usuario
 
         $consulta->execute();
         return $objetoAccesoDato->RetornarUltimoIdInsertado();
-    }
+}
 
     function GuardarArchivo ($archivo)
     {
@@ -156,9 +206,9 @@ class Usuario
         }
     }    
 
-    static function ValidarUsuario(Usuario $usuarioAValidar) 
+    static function ValidarUsuario($mail, $clave) 
     {
-        if(isset($usuarioAValidar->mail) && isset($usuarioAValidar->clave))
+        if(isset($mail) && isset($clave))
         {
             $arrayUsuarios = Usuario::RetornarArrayDelCSV();
 
@@ -166,9 +216,9 @@ class Usuario
             {
                 foreach($arrayUsuarios as $usuario)
                 {
-                    if($usuario->mail == $usuarioAValidar->mail)
+                    if($usuario->mail == $mail)
                     {
-                        if($usuario->clave == $usuarioAValidar->clave) {
+                        if($usuario->clave == $clave) {
                             //echo "Mail y Clave correctos";
                             return 1;
                         }
@@ -183,6 +233,7 @@ class Usuario
         //echo "Usuario inexistente";
         return 0;
     }
+
     static function TraerUsuario($id) {
         
         $listado = Usuario::RetornarArrayDelJSON();
