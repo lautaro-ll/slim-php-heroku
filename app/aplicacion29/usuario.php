@@ -25,10 +25,9 @@ class Usuario
 
     static function ValidarUsuarioBd($mail, $clave) 
     {
-        if(isset($mail) && isset($clave))
+        if($mail!=NULL && $clave!=NULL)
         {
             $arrayUsuarios = Usuario::RetornarUsuarios();
-
             if(!is_null($arrayUsuarios)) 
             {
                 foreach($arrayUsuarios as $usuario)
@@ -36,18 +35,18 @@ class Usuario
                     if($usuario->mail == $mail)
                     {
                         if($usuario->clave == $clave) {
-                            //echo "Mail y Clave correctos";
+                            //echo "Mail y Clave correctos<br/>";
                             return 1;
                         }
                         else {
-                            //echo "Clave errónea";
+                            //echo "Clave errónea<br/>";
                             return -1;
                         }
                     }
                 }
             }
         }
-        //echo "Usuario inexistente";
+        //echo "Usuario inexistente<br/>";
         return 0;
     }
 
