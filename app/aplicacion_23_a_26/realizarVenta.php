@@ -11,15 +11,15 @@ Verificar que el usuario y el producto exista y tenga stock.
 crea un ID autoincremental(emulado, puede ser un random de 1 a 10.000).
 carga los datos necesarios para guardar la venta en un nuevo renglón.
 Retorna un :
-“venta realizada”Se hizo una venta
-“no se pudo hacer“si no se pudo hacer
+“venta realizada” si se hizo una venta
+“no se pudo hacer“ si no se pudo hacer
 Hacer los métodos necesarios en las clases
 
 */
 
-require "producto.php";
-require "usuario.php";
-require "ventas.php";
+require "Producto.php";
+require "Usuario.php";
+require "Ventas.php";
 
 echo "Aplicación No 26 (RealizarVenta)<br/>";
 
@@ -28,14 +28,19 @@ if(isset($_POST["numeroSerie"]) && isset($_POST["id"]) && isset($_POST["cantidad
     $idUsuario = $_POST["id"];
     $numeroSerie = $_POST["numeroSerie"];
     $cantidadItems = $_POST["cantidadItems"];
-    if(Ventas::RealizarVenta($numeroSerie, $cantidadItems, $idUsuario)) {
-        echo "Venta Realizada.<br/>";
-    }else {
-        echo "No se pudo hacer la venta.<br/>";
+
+    if(Ventas::RealizarVenta($numeroSerie, $cantidadItems, $idUsuario)) 
+    {
+        echo "Venta Realizada. <br/>";
+    }
+    else 
+    {
+        echo "No se pudo hacer la venta. <br/>";
     }
 }
-else {
-    echo "No se ingresaron datos de la venta.<br/>";
+else 
+{
+    echo "No se ingresaron datos de la venta. <br/>";
 }
 
 ?>

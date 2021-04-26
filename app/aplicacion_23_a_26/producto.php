@@ -19,7 +19,41 @@ class Producto
         $this->id = $id;
     }
 
-    static function DarDeAlta($producto) {
+    static function TraerProducto ($numeroSerie) 
+    {    
+        $listado = Producto::RetornarArrayDelJSON();
+        if($listado != NULL) {
+            for($i=0;$i<sizeof($listado);$i++) 
+            {
+                if($listado[$i]["numeroSerie"] == $numeroSerie) 
+                {
+                    return $listado[$i];
+                }
+            }
+        }
+        else {
+            return NULL;
+        }
+    }
+
+    static function VerificarSiExiste($numeroSerie) 
+    {
+        $listado = Producto::RetornarArrayDelJSON();
+
+        if($listado != NULL) {
+            for($i=0;$i<sizeof($listado);$i++) 
+            {
+                if($listado[$i]["numeroSerie"] == $numeroSerie) 
+                {
+                    return 1;
+                }
+            }
+        }
+        return 0;
+    }
+
+    static function DarDeAlta($producto) 
+    {
         if(file_exists("productos.json") && Producto::VerificarSiExiste($producto))
         {
             if(Producto::AumentarStock($producto)) {
@@ -34,29 +68,30 @@ class Producto
             return 0;
         }
     }
-    static function VerificarSiExiste($numeroSerie) {
-        $listado = Producto::RetornarArrayDelJSON();
 
-        if($listado != NULL) {
-            for($i=0;$i<sizeof($listado);$i++) 
-            {
-                if($listado[$i]["numeroSerie"] == $numeroSerie) 
-                {
-                    return 1;
-                }
-            }
+    static function AgregarProducto($producto) 
+    {
+        if(!file_exists("productos.json") || is_writable("productos.json")) 
+        {
+            $archivo = fopen("productos.json", "a");
+            fwrite($archivo, json_encode($producto)."\n");
+            fclose($archivo);
+            return 1;
         }
-        return 0;
+        else {
+            return 0;
+        }
     }
-    static function AumentarStock($numeroSerie) {
-        
+
+    static function ActualizarStock($numeroSerie, $nuevoStock) 
+    {    
         $listado = Producto::RetornarArrayDelJSON();
         if($listado != NULL) {
             for($i=0;$i<sizeof($listado);$i++) 
             {
                 if($listado[$i]["numeroSerie"] == $numeroSerie) 
                 {
-                    $listado[$i]["stock"]++;
+                    $listado[$i]["stock"] = $nuevoStock;
                 }
             }
             unlink("productos.json");
@@ -70,23 +105,11 @@ class Producto
             return 0;
         }        
     }
-    static function AgregarProducto($producto) {
 
-        if(!file_exists("productos.json") || is_writable("productos.json")) 
-        {
-            $archivo = fopen("productos.json", "a");
-            fwrite($archivo, json_encode($producto)."\n");
-            fclose($archivo);
-            return 1;
-        }
-        else {
-            return 0;
-        }
-    }
     static function RetornarArrayDelJSON()
     {
-        if(($archivo = fopen("productos.json","r")) !== FALSE) {
-
+        if(($archivo = fopen("productos.json","r")) !== FALSE) 
+        {
             $i = 0;
             while(!feof($archivo))
             {
@@ -102,46 +125,6 @@ class Producto
         else {
             return null;
         }
-    }
-    static function TraerProducto($numeroSerie) {
-        
-        $listado = Producto::RetornarArrayDelJSON();
-        if($listado != NULL) {
-            for($i=0;$i<sizeof($listado);$i++) 
-            {
-                if($listado[$i]["numeroSerie"] == $numeroSerie) 
-                {
-                    return $listado[$i];
-                }
-            }
-        }
-        else {
-            return NULL;
-        }
-        
-    }
-
-    static function DisminuirStock($numeroSerie) {
-        
-        $listado = Producto::RetornarArrayDelJSON();
-        if($listado != NULL) {
-            for($i=0;$i<sizeof($listado);$i++) 
-            {
-                if($listado[$i]["numeroSerie"] == $numeroSerie) 
-                {
-                    $listado[$i]["stock"]--;
-                }
-            }
-            unlink("productos.json");
-            for($i=0;$i<sizeof($listado);$i++) 
-            {
-                Producto::AgregarProducto($listado[$i]);
-            }
-            return 1;
-        }
-        else {
-            return 0;
-        }        
     }
 }
 

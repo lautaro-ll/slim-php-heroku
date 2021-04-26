@@ -10,14 +10,30 @@ class Usuario
 
     static $listado = array();
 
-    function __construct($nombre = "",$clave = "",$mail = "",$id = "",$fechaDeRegistro = "")
+    function __construct($nombre, $clave, $mail, $id, $fechaDeRegistro)
     {
-        //usar setter y getter
         $this->nombre = $nombre;
         $this->clave = $clave;
         $this->mail = $mail;
         $this->id = $id;
         $this->fechaDeRegistro = $fechaDeRegistro;
+    }
+
+    static function TraerUsuario ($id) 
+    {    
+        $listado = Usuario::RetornarArrayDelJSON();
+        if($listado != NULL) {
+            for($i=0;$i<sizeof($listado);$i++) 
+            {
+                if($listado[$i]["id"] == $id) 
+                {
+                    return $listado[$i];
+                }
+            }
+        }
+        else {
+            return NULL;
+        }
     }
 
     function GuardarArchivo ($archivo)
@@ -55,20 +71,6 @@ class Usuario
         }
     }
 
-    function GuardarEnCSV ()
-    {
-        if(!file_exists("usuarios.csv") || is_writable("usuarios.csv")) 
-        {
-            $archivo = fopen("usuarios.csv", "a");
-            fwrite($archivo, "$this->nombre, $this->clave, $this->mail\n");
-            fclose($archivo);
-            return 1;
-        }
-        else {
-            return 0;
-        }
-    }
-
     static function RetornarArrayDelJSON()
     {
         if(($archivo = fopen("usuarios.json","r")) !== FALSE) {
@@ -82,25 +84,6 @@ class Usuario
                     $listado[$i] = $usuario;
                 $i++;                      
             }
-            fclose($archivo);
-            return $listado;
-        }
-        else {
-            return null;
-        }
-    }
-
-    static function RetornarArrayDelCSV()
-    {
-        if(($archivo = fopen("usuarios.csv","r")) !== FALSE) {
-            $i = 0;
-            while (($datos = fgetcsv($archivo, 1000, ",")) !== FALSE) {
-                if(count($datos)==3) {
-                    $nuevoUsuario = new Usuario($datos[0],$datos[1],$datos[2]);
-                }
-                $listado[$i] = $nuevoUsuario;
-                $i++;
-            } 
             fclose($archivo);
             return $listado;
         }
@@ -124,51 +107,6 @@ class Usuario
             echo "</ul>";
         }
     }    
-
-    static function ValidarUsuario(Usuario $usuarioAValidar) 
-    {
-        if(isset($usuarioAValidar->mail) && isset($usuarioAValidar->clave))
-        {
-            $arrayUsuarios = Usuario::RetornarArrayDelCSV();
-
-            if(!is_null($arrayUsuarios)) 
-            {
-                foreach($arrayUsuarios as $usuario)
-                {
-                    if($usuario->mail == $usuarioAValidar->mail)
-                    {
-                        if($usuario->clave == $usuarioAValidar->clave) {
-                            //echo "Mail y Clave correctos";
-                            return 1;
-                        }
-                        else {
-                            //echo "Clave errónea";
-                            return -1;
-                        }
-                    }
-                }
-            }
-        }
-        //echo "Usuario inexistente";
-        return 0;
-    }
-    static function TraerUsuario($id) {
-        
-        $listado = Usuario::RetornarArrayDelJSON();
-        if($listado != NULL) {
-            for($i=0;$i<sizeof($listado);$i++) 
-            {
-                if($listado[$i]["id"] == $id) 
-                {
-                    return $listado[$i];
-                }
-            }
-        }
-        else {
-            return NULL;
-        }
-        
-    }
 }
 
 ?>

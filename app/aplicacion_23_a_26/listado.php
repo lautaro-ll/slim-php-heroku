@@ -3,11 +3,10 @@
 /*
 LEMOS LAUTARO LUCAS
 
-Aplicación No 24 ( Listado JSON y array de usuarios)
+Aplicación No 24 (Listado JSON y array de usuarios)
 Archivo: listado.php
 método:GET
-Recibe qué listado va a retornar(ej:usuarios,productos,vehículos,...etc),por ahora solo tenemos
-usuarios).
+Recibe qué listado va a retornar (ej:usuarios,productos,vehículos,...etc), por ahora solo tenemos usuarios.
 En el caso de usuarios carga los datos del archivo usuarios.json.
 se deben cargar los datos en un array de usuarios.
 Retorna los datos que contiene ese array en una lista
@@ -18,8 +17,8 @@ Retorna los datos que contiene ese array en una lista
 Hacer los métodos necesarios en la clase usuario
 */
 
-require "usuario.php";
-echo "Aplicación No 24 ( Listado JSON y array de usuarios)<br/>";
+require "Usuario.php";
+echo "Aplicación No 24 (Listado JSON y array de usuarios)<br/>";
 
 if(isset($_GET["listado"]))
 {
@@ -31,13 +30,13 @@ if(isset($_GET["listado"]))
             usuario::DibujarListado($arrayUsuarios);
             break;
         default:
-            echo "Listado incorrecto";
+            echo "Listado incorrecto. <br/>";
             break;
     }
 }
 else
 {
-    echo "No se ingresó listado<br/>";
+    echo "No se ingresó listado. <br/>";
 }
 
 
