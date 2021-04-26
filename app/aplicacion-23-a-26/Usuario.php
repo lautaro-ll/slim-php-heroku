@@ -39,14 +39,14 @@ class Usuario
 
     function GuardarArchivo ($archivo)
     {
-        $destino = $this->nombre."/Fotos/";
+        $destino = "Usuarios/Fotos/";
 
         if (!file_exists($destino)) 
         {
             mkdir($destino,0777,true);
         }
 
-        if (move_uploaded_file($archivo["tmp_name"], $destino.$archivo["name"])) 
+        if (move_uploaded_file($archivo["tmp_name"], $destino.$this->id."-".$archivo["name"])) 
         {
             return 1;
         } 
