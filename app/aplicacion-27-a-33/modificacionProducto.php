@@ -15,7 +15,7 @@ Retorna un :
 Hacer los métodos necesarios en la clase
 */
 
-require "producto.php";
+require "Producto.php";
 echo "Aplicación No 33 (ModificacionProducto BD)<br/>";
 
 if(isset($_POST["codigo_de_barra"]) && isset($_POST["nombre"]) && isset($_POST["tipo"]) && isset($_POST["stock"]) && isset($_POST["precio"]))
