@@ -134,9 +134,9 @@ class Producto
             echo "<ul>";
             foreach($listado as $producto)
             {
-                echo "<li>".$producto["numeroSerie"]."</li>";
-                echo "<li>".$producto["nombre"]."</li>";
-                echo "<li>".$producto["stock"]."</li>";
+                echo "<li>Serie: ".$producto["numeroSerie"]."</li>";
+                echo "<li>Nombre: ".$producto["nombre"]."</li>";
+                echo "<li>Stock: ".$producto["stock"]."</li>";
                 echo "<br/>";
             }
             echo "</ul>";
