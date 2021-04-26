@@ -103,6 +103,7 @@ class Usuario
                 echo "<li>Nombre: ".$usuario["nombre"]."</li>";
                 echo "<li>Clave: ".$usuario["clave"]."</li>";
                 echo "<li>Mail: ".$usuario["mail"]."</li>";
+                echo "<li>Id: ".$usuario["id"]."</li>";
                 echo "<br/>";
             }
             echo "</ul>";
