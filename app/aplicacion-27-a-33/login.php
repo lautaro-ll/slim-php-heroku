@@ -16,7 +16,7 @@ Hacer los métodos necesarios en la clase usuario.
 */
 
 require "Usuario.php";
-echo "Aplicación No 29 (Login con bd)<br/>";
+echo "Aplicación No 29 (Login con BD)<br/>";
 
 if(isset($_POST["clave"]) && isset($_POST["mail"]))
 {
