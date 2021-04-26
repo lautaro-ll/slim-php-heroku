@@ -15,6 +15,7 @@ Cada usuario se agrega en un renglón diferente al anterior.
 Hacer los métodos necesarios en la clase usuario.
 */
 include "Usuario.php";
+echo "Aplicación No 23 (Registro JSON)<br/>";
 
 if(isset($_POST["nombre"]) && isset($_POST["clave"]) && isset($_POST["mail"]) && isset($_FILES["archivo"]))
 {

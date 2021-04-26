@@ -20,7 +20,6 @@ Hacer los métodos necesarios en las clases
 require "Producto.php";
 require "Usuario.php";
 require "Ventas.php";
-
 echo "Aplicación No 26 (RealizarVenta)<br/>";
 
 if(isset($_POST["numeroSerie"]) && isset($_POST["id"]) && isset($_POST["cantidadItems"]))
