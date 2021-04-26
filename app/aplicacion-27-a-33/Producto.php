@@ -11,14 +11,13 @@ class Producto
     public $id;
     public $fecha_de_modificacion;
 
-    function nuevoProducto($codigo_de_barra, $nombre, $tipo, $stock, $precio, $fecha_de_modificacion)
+    function nuevoProducto($codigo_de_barra, $nombre, $tipo, $stock, $precio)
     {
         $this->codigo_de_barra = $codigo_de_barra;
         $this->nombre = $nombre;
         $this->tipo = $tipo;
         $this->stock = $stock;
         $this->precio = $precio;
-        $this->fecha_de_modificacion = $fecha_de_modificacion;
     }
 
     static function RetornarProductos ()
@@ -68,6 +67,8 @@ class Producto
 
     static function ModificarProductoEnBd($producto) 
     {
+        $fecha_de_modificacion = date("Y-m-d");
+
         $objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
         $consulta =$objetoAccesoDato->RetornarConsulta("UPDATE `producto` SET `nombre`=:nombre,`tipo`=:tipo,
         `stock`=:stock,`precio`=:precio,`fecha_de_modificacion`=:fecha_de_modificacion WHERE `codigo_de_barra`=:codigo_de_barra");
@@ -75,7 +76,7 @@ class Producto
         $consulta->bindValue(':tipo',$producto->tipo, PDO::PARAM_STR);
         $consulta->bindValue(':stock',$producto->stock, PDO::PARAM_INT);
         $consulta->bindValue(':precio',$producto->precio, PDO::PARAM_STR);
-        $consulta->bindValue(':fecha_de_modificacion',$producto->fecha_de_modificacion, PDO::PARAM_STR);
+        $consulta->bindValue(':fecha_de_modificacion',$fecha_de_modificacion, PDO::PARAM_STR);
         $consulta->bindValue(':codigo_de_barra',$producto->codigo_de_barra, PDO::PARAM_INT);
 
         return $consulta->execute();
@@ -83,7 +84,7 @@ class Producto
 
     static function AltaProductoEnBd($producto) 
     {
-        if($producto->codigo_de_barra!=NULL && ($productoEnBd = Producto::TraerProductoDeBd($producto)))
+        if($producto->codigo_de_barra!=NULL && ($productoEnBd = Producto::TraerProductoDeBd($producto->codigo_de_barra)))
         {
             $nuevoStock = $productoEnBd->stock + $producto->stock;
             if(Producto::ActualizarStockEnBd($producto, $nuevoStock)) {

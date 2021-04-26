@@ -21,11 +21,11 @@ require "Ventas.php";
 
 echo "Aplicación No 31 (RealizarVenta BD)<br/>";
 
-if(isset($_POST["codigo_de_barra"]) && isset($_POST["id"]) && isset($_POST["cantidadItems"]))
+if(isset($_POST["codigo_de_barra"]) && isset($_POST["id"]) && isset($_POST["cantidad"]))
 {
     $codigo_de_barra = $_POST["codigo_de_barra"];
     $idUsuario = $_POST["id"];
-    $cantidadItems = $_POST["cantidadItems"];
+    $cantidad = $_POST["cantidad"];
     if(Ventas::RealizarVentaEnBd($codigo_de_barra, $idUsuario, $cantidad)) 
     {
         echo "Venta Realizada.<br/>";

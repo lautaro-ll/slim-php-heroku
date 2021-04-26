@@ -25,10 +25,9 @@ if(isset($_POST["codigo_de_barra"]) && isset($_POST["nombre"]) && isset($_POST["
     $tipo = $_POST["tipo"];
     $stock = $_POST["stock"];
     $precio = $_POST["precio"];
-    $fecha_de_modificacion = date("Y-m-d");
 
     $producto = new Producto();
-    $producto->nuevoProducto($codigo_de_barra, $nombre, $tipo, $stock, $precio, $fecha_de_modificacion);  
+    $producto->nuevoProducto($codigo_de_barra, $nombre, $tipo, $stock, $precio);  
     
 
     if(($resultado = Producto::ValidarProductoEnBd($codigo_de_barra)) == 1 && Producto::ModificarProductoEnBd($producto)) 

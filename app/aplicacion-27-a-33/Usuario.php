@@ -13,7 +13,7 @@ class Usuario
 
     static $listado = array();
 
-    function nuevoUsuario($nombre, $apellido ,$clave ,$mail ,$fecha_de_registro , $localidad)
+    function nuevoUsuario($nombre, $apellido, $clave, $mail, $fecha_de_registro, $localidad)
     {
         $this->nombre = $nombre;
         $this->apellido = $apellido;
@@ -83,7 +83,7 @@ class Usuario
 
     static function AltaUsuarioEnBd($usuario) 
     {
-        if($usuario->mail!=NULL && Usuario::TraerUsuarioDeBd($usuario))
+        if($usuario->mail!=NULL && Usuario::TraerUsuarioDeBd($usuario->id))
         {
                 return -1;
         }

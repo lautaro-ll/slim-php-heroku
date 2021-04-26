@@ -24,8 +24,8 @@ if(isset($_POST["nombre"]) && isset($_POST["mail"]) && isset($_POST["clave"]) &&
     $claveNueva = $_POST["claveNueva"];
 
     $usuario = new Usuario();
-    $usuario->nuevoUsuario($nombre,"",$clave,$mail);
-    
+    $usuario->nuevoUsuario($nombre,null,$clave,$mail,null,null);
+
     if(($resultado = Usuario::ValidarUsuarioEnBd($mail, $clave)) == 1)
     {
         if(Usuario::ActualizarClaveEnBd($usuario, $claveNueva)) 
