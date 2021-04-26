@@ -13,7 +13,7 @@ Retorna un :
 Hacer los métodos necesarios en la clase usuario
 */
 
-require "usuario.php";
+require "Usuario.php";
 echo "Aplicación No 22 (Login)<br/>";
 
 if(isset($_POST["clave"]) && isset($_POST["mail"]))
@@ -22,21 +22,22 @@ if(isset($_POST["clave"]) && isset($_POST["mail"]))
     $mail = $_POST["mail"];
     $usuarioIngresado = new Usuario(null, $clave, $mail);
 
-    $resultado = Usuario::ValidarUsuario($usuarioIngresado);
-
-    if($resultado == 1){
-        echo "Verificado";
+    if(($resultado = Usuario::ValidarUsuario($usuarioIngresado)) == 1)
+    {
+        echo "Verificado. <br/>";
     }
-    elseif ($resultado == -1) {
-        echo "Error en los datos"; //clave errónea.
+    elseif ($resultado == -1) 
+    {
+        echo "Error en los datos. <br/>";
     }
-    else {
-        echo "Usuario no registrado"; //mail erróneo.
+    else 
+    {
+        echo "Usuario no registrado. <br/>";
     }
 }
 else
 {
-    echo "No se ingresó usuario";
+    echo "No se ingresó usuario. <br/>";
 }
 
 ?>
