@@ -100,9 +100,10 @@ class Usuario
             echo "<ul>";
             foreach($listado as $usuario)
             {
-                echo "<li>".$usuario->nombre."</li>";
-                echo "<li>".$usuario->clave."</li>";
-                echo "<li>".$usuario->mail."</li>";
+                var_dump($listado);
+                echo "<li>".$usuario["nombre"]."</li>";
+                echo "<li>".$usuario["clave"]."</li>";
+                echo "<li>".$usuario["mail"]."</li>";
                 echo "<br/>";
             }
             echo "</ul>";
