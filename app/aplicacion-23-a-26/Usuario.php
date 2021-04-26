@@ -31,7 +31,8 @@ class Usuario
                 }
             }
         }
-        else {
+        else 
+        {
             return NULL;
         }
     }
