@@ -126,6 +126,22 @@ class Producto
             return null;
         }
     }
+
+    static function DibujarListado($listado)
+    {
+        if(!is_null($listado) && is_array($listado)) 
+        {
+            echo "<ul>";
+            foreach($listado as $producto)
+            {
+                echo "<li>".$producto["numeroSerie"]."</li>";
+                echo "<li>".$producto["nombre"]."</li>";
+                echo "<li>".$producto["stock"]."</li>";
+                echo "<br/>";
+            }
+            echo "</ul>";
+        }
+    }    
 }
 
 ?>
