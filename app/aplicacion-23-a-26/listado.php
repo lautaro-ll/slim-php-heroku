@@ -18,6 +18,7 @@ Hacer los métodos necesarios en la clase usuario
 */
 
 require "Usuario.php";
+require "Producto.php";
 echo "Aplicación No 24 (Listado JSON y array de usuarios)<br/>";
 
 if(isset($_GET["listado"]))
@@ -26,8 +27,12 @@ if(isset($_GET["listado"]))
     switch($listadoIngresado)
     {
         case "usuarios":
-            $arrayUsuarios = usuario::RetornarArrayDelJSON();
-            usuario::DibujarListado($arrayUsuarios);
+            $arrayUsuarios = Usuario::RetornarArrayDelJSON();
+            Usuario::DibujarListado($arrayUsuarios);
+            break;
+        case "productos":
+            $arrayProductos = Producto::RetornarArrayDelJSON();
+            Producto::DibujarListado($arrayProductos);
             break;
         default:
             echo "Listado incorrecto. <br/>";
