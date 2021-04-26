@@ -15,7 +15,7 @@ require "Usuario.php";
 
 echo "Aplicación No 20 (Registro CSV)<br/>";
 
-if(isset($_POST["usuario"]))
+if(isset($_POST["nombre"]) && isset($_POST["clave"]) && isset($_POST["mail"]))
 {
     $nombre = $_POST["nombre"];
     $clave = $_POST["clave"];
@@ -31,6 +31,10 @@ if(isset($_POST["usuario"]))
     {
         echo "No se pudo agregar usuario. <br/>";
     }
+}
+else
+{
+    echo "No se ingresaron datos del usuario. <br/>";
 }
 
 ?>
