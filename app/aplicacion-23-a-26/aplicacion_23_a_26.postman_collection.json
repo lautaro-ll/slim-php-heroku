@@ -1,0 +1,179 @@
+{
+	"info": {
+		"_postman_id": "541881e1-9174-406e-9bdf-c0e39561ac18",
+		"name": "aplicacion_23_a_26",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Aplicación No 23 (Registro JSON)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "nombre",
+							"value": "Marco",
+							"type": "text"
+						},
+						{
+							"key": "clave",
+							"value": "1234",
+							"type": "text"
+						},
+						{
+							"key": "mail",
+							"value": "m@mail.com",
+							"type": "text"
+						},
+						{
+							"key": "archivo",
+							"type": "file",
+							"src": []
+						}
+					]
+				},
+				"url": {
+					"raw": "https://lautaro-lemos.herokuapp.com/aplicacion-23-a-26/registro.php",
+					"protocol": "https",
+					"host": [
+						"lautaro-lemos",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"aplicacion-23-a-26",
+						"registro.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Aplicación No 24 (Listado JSON y array de usuarios)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://lautaro-lemos.herokuapp.com/aplicacion-23-a-26/listado.php?listado=productos",
+					"protocol": "https",
+					"host": [
+						"lautaro-lemos",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"aplicacion-23-a-26",
+						"listado.php"
+					],
+					"query": [
+						{
+							"key": "listado",
+							"value": "usuarios",
+							"disabled": true
+						},
+						{
+							"key": "listado",
+							"value": "productos"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Aplicación No 25 (AltaProducto)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "numeroSerie",
+							"value": "10110101",
+							"type": "text"
+						},
+						{
+							"key": "nombre",
+							"value": "Capitan",
+							"type": "text"
+						},
+						{
+							"key": "tipo",
+							"value": "solido",
+							"type": "text"
+						},
+						{
+							"key": "stock",
+							"value": "50",
+							"type": "text"
+						},
+						{
+							"key": "precio",
+							"value": "99.9",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://lautaro-lemos.herokuapp.com/aplicacion-23-a-26/altaProducto.php",
+					"protocol": "https",
+					"host": [
+						"lautaro-lemos",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"aplicacion-23-a-26",
+						"altaProducto.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Aplicación No 26 (RealizarVenta)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "numeroSerie",
+							"value": "10110101",
+							"type": "text"
+						},
+						{
+							"key": "id",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "cantidadItems",
+							"value": "3",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://lautaro-lemos.herokuapp.com/aplicacion-23-a-26/realizarVenta.php",
+					"protocol": "https",
+					"host": [
+						"lautaro-lemos",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"aplicacion-23-a-26",
+						"realizarVenta.php"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

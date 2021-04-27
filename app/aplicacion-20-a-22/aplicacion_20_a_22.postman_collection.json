@@ -1,0 +1,113 @@
+{
+	"info": {
+		"_postman_id": "c1620504-f523-4f8a-8978-93145b373b8d",
+		"name": "aplicacion_20_a_22",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Aplicación No 20 (Registro CSV)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "nombre",
+							"value": "Carla",
+							"type": "text"
+						},
+						{
+							"key": "clave",
+							"value": "carla2020",
+							"type": "text"
+						},
+						{
+							"key": "mail",
+							"value": "c2020@mail.com",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://lautaro-lemos.herokuapp.com/aplicacion-20-a-22/registro.php",
+					"protocol": "https",
+					"host": [
+						"lautaro-lemos",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"aplicacion-20-a-22",
+						"registro.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Aplicación No 21 (Listado CSV y array de usuarios)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://lautaro-lemos.herokuapp.com/aplicacion-20-a-22/listado.php?listado=usuarios",
+					"protocol": "https",
+					"host": [
+						"lautaro-lemos",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"aplicacion-20-a-22",
+						"listado.php"
+					],
+					"query": [
+						{
+							"key": "listado",
+							"value": "usuarios"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Aplicación No 22 (Login)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "clave",
+							"value": "1234",
+							"type": "text"
+						},
+						{
+							"key": "mail",
+							"value": "lautaro@gmail.com",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://lautaro-lemos.herokuapp.com/aplicacion-20-a-22/login.php",
+					"protocol": "https",
+					"host": [
+						"lautaro-lemos",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"aplicacion-20-a-22",
+						"login.php"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

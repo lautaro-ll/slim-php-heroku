@@ -1,0 +1,322 @@
+{
+	"info": {
+		"_postman_id": "e8f3904a-0733-48fd-9d3c-653bff762f87",
+		"name": "aplicacion_27_a_33",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Aplicación No 27 (Registro BD)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "nombre",
+							"value": "Pablo",
+							"type": "text"
+						},
+						{
+							"key": "apellido",
+							"value": "Gomez",
+							"type": "text"
+						},
+						{
+							"key": "clave",
+							"value": "1234",
+							"type": "text"
+						},
+						{
+							"key": "mail",
+							"value": "pg@mail.com",
+							"type": "text"
+						},
+						{
+							"key": "localidad",
+							"value": "Avellaneda",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/slim-php-heroku/app/aplicacion-27-a-33/registro.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"slim-php-heroku",
+						"app",
+						"aplicacion-27-a-33",
+						"registro.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Aplicación Nº 28 (Listado BD)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/slim-php-heroku/app/aplicacion-27-a-33/listado.php?listado=usuarios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"slim-php-heroku",
+						"app",
+						"aplicacion-27-a-33",
+						"listado.php"
+					],
+					"query": [
+						{
+							"key": "listado",
+							"value": "usuarios"
+						},
+						{
+							"key": "listado",
+							"value": "productos",
+							"disabled": true
+						},
+						{
+							"key": "listado",
+							"value": "ventas",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Aplicación No 29 (Login con BD)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "clave",
+							"value": "123456",
+							"type": "text"
+						},
+						{
+							"key": "mail",
+							"value": "ggerram1@hud.gov",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/slim-php-heroku/app/aplicacion-27-a-33/login.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"slim-php-heroku",
+						"app",
+						"aplicacion-27-a-33",
+						"login.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Aplicación No 30 (AltaProducto BD)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "codigo_de_barra",
+							"value": "1010101",
+							"type": "text"
+						},
+						{
+							"key": "nombre",
+							"value": "ProductoA",
+							"type": "text"
+						},
+						{
+							"key": "tipo",
+							"value": "polvo",
+							"type": "text"
+						},
+						{
+							"key": "stock",
+							"value": "1000",
+							"type": "text"
+						},
+						{
+							"key": "precio",
+							"value": "2.7",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/slim-php-heroku/app/aplicacion-27-a-33/altaProducto.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"slim-php-heroku",
+						"app",
+						"aplicacion-27-a-33",
+						"altaProducto.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Aplicación No 31 (RealizarVenta BD)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "codigo_de_barra",
+							"value": "77900363",
+							"type": "text"
+						},
+						{
+							"key": "id",
+							"value": "103",
+							"type": "text"
+						},
+						{
+							"key": "cantidad",
+							"value": "2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/slim-php-heroku/app/aplicacion-27-a-33/realizarVenta.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"slim-php-heroku",
+						"app",
+						"aplicacion-27-a-33",
+						"realizarVenta.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Aplicación No 32 (Modificacion BD)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "nombre",
+							"value": "Roberto",
+							"type": "text"
+						},
+						{
+							"key": "clave",
+							"value": "123456",
+							"type": "text"
+						},
+						{
+							"key": "mail",
+							"value": "bhoff5@addthis.com",
+							"type": "text"
+						},
+						{
+							"key": "claveNueva",
+							"value": "999999",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/slim-php-heroku/app/aplicacion-27-a-33/modificacionUsuario.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"slim-php-heroku",
+						"app",
+						"aplicacion-27-a-33",
+						"modificacionUsuario.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Aplicación No 33 (ModificacionProducto BD)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "codigo_de_barra",
+							"value": "77900369",
+							"type": "text"
+						},
+						{
+							"key": "nombre",
+							"value": "CocaCola",
+							"type": "text"
+						},
+						{
+							"key": "tipo",
+							"value": "liquido",
+							"type": "text"
+						},
+						{
+							"key": "stock",
+							"value": "90",
+							"type": "text"
+						},
+						{
+							"key": "precio",
+							"value": "130",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/slim-php-heroku/app/aplicacion-27-a-33/modificacionProducto.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"slim-php-heroku",
+						"app",
+						"aplicacion-27-a-33",
+						"modificacionProducto.php"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

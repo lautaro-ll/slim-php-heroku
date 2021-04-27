@@ -56,7 +56,7 @@ class Producto
     {
         if(file_exists("productos.json") && Producto::VerificarSiExiste($producto))
         {
-            if(Producto::AumentarStock($producto)) {
+            if(Producto::ActualizarStock($producto->numeroSerie, $producto->stock)) {
                 return 1;
             }
             return 0;
