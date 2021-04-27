@@ -54,7 +54,7 @@ class Producto
 
     static function DarDeAlta($producto) 
     {
-        if(file_exists("productos.json") && Producto::VerificarSiExiste($producto))
+        if(file_exists("productos.json") && Producto::VerificarSiExiste($producto->numeroSerie))
         {
             if(Producto::ActualizarStock($producto->numeroSerie, $producto->stock)) {
                 return 1;
