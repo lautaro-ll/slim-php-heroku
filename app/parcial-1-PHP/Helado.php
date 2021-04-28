@@ -17,6 +17,72 @@ class Helado
         $this->stock = $cantidad;
         $this->precioFinal = $precioBruto * 1.21;
     }
+    static function EliminarFoto($nro_pedido) 
+    {
+        $objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
+        $consulta =$objetoAccesoDato->RetornarConsulta("SELECT tipo,sabor FROM ventas WHERE `nro_pedido`=:nro_pedido");
+        $consulta->bindValue(':nombre',$nro_pedido, PDO::PARAM_INT);
+        $consulta->execute();
+        $array = $consulta->fetchAll(PDO::FETCH_CLASS, "Ventas");	
+        move_uploaded_file("ImagenesDeHelados/".$array["tipo"]."-".$array["sabor"].".jpg","BACKUPVENTAS/");
+
+    }
+    static function BorrarVentaEnBd($nro_pedido) 
+    {
+
+        $objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
+        $consulta =$objetoAccesoDato->RetornarConsulta("DELETE FROM ventas WHERE `nro_pedido`=:nro_pedido");
+        $consulta->bindValue(':nombre',$nro_pedido, PDO::PARAM_INT);
+        return $consulta->execute();
+    }
+    static function RetornarHelados ()
+    {
+        $objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
+        $consulta =$objetoAccesoDato->RetornarConsulta("SELECT * from ventas");
+        $consulta->execute();			
+        $array = $consulta->fetchAll(PDO::FETCH_CLASS, "Ventas");	
+        return $array;
+    }
+    static function ValidarHeladoEnBd($nro_pedido) 
+    {
+        if($nro_pedido!=NULL)
+        {
+            $array = Helado::RetornarHelados();
+            
+            if(!is_null($array)) 
+            {
+                foreach($array as $producto)
+                {
+                    if($producto->nro_pedido == $nro_pedido)
+                    {
+                        return 1;
+                    }
+                }
+                return -1;
+            }
+        }
+        return 0;
+    }
+
+    function GuardarArchivo ($archivo)
+    {
+        $destino = "ImagenesDeHelados/";
+        $ext = pathinfo($archivo["name"], PATHINFO_EXTENSION);
+
+        if (!file_exists($destino)) 
+        {
+            mkdir($destino,0777,true);
+        }
+
+        if (move_uploaded_file($archivo["tmp_name"], $destino.$this->tipo."-".$this->sabor.".".$ext)) 
+        {   
+            return 1;
+        } 
+        else 
+        {
+            return 0;
+        }
+    }
 
     static function TraerProducto ($sabor, $tipo) 
     {    

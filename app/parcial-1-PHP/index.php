@@ -13,6 +13,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["peticion"]))
         case "AltaVenta":
             require("AltaVenta.php");
             break;
+        case "HeladoCarga":
+            require("HeladoCarga.php");
+            break;
+        case "BorrarVenta":
+            require("BorrarVenta.php");
+            break;
         default:
     }
 }
@@ -20,9 +26,6 @@ else if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["peticion"]))
 {
     switch($_GET["peticion"])
     {
-        case "HeladoCarga":
-            require("HeladoCarga.php");
-            break;
         case "ConsultaVentas":
             require("ConsultaVentas.php");
             break;

@@ -6,15 +6,18 @@ precioFinal. Se guardan los datos en en el archivo de texto helados.json, tomand
 identificador(emulado) .Sí el sabor y tipo ya existen , se actualiza el precio y se suma al stock existente.
 Validar que los valores sean válidos.
 
+5- (2 pts.)HeladoCarga.php:.(continuación) Cambio de get a post.
+completar el alta con imagen del helado, guardando la imagen con el tipo y el sabor como nombre en la carpeta
+/ImagenesDeHelados
 */
 require "Helado.php";
 
-if(isset($_GET["sabor"]) && isset($_GET["precioBruto"]) && isset($_GET["tipo"]) && isset($_GET["cantidad"]))
+if(isset($_POST["sabor"]) && isset($_POST["precioBruto"]) && isset($_POST["tipo"]) && isset($_POST["cantidad"]))
 {
-    $sabor = $_GET["sabor"];
-    $precioBruto = $_GET["precioBruto"];
-    $tipo = $_GET["tipo"];
-    $cantidad = $_GET["cantidad"];
+    $sabor = $_POST["sabor"];
+    $precioBruto = $_POST["precioBruto"];
+    $tipo = $_POST["tipo"];
+    $cantidad = $_POST["cantidad"];
 
     if($tipo == "agua" || $tipo == "crema")
     {
@@ -24,6 +27,14 @@ if(isset($_GET["sabor"]) && isset($_GET["precioBruto"]) && isset($_GET["tipo"]) 
         if(($alta = Helado::AltaHeladoJson($Helado)) == 1) 
         {
             echo "Ingresado. <br/>";
+            if($Helado->GuardarArchivo($archivo)) 
+            {
+                echo "El archivo ha sido subido exitosamente. <br/>";
+            }
+            else 
+            {
+                echo "El archivo no pudo ser subido. <br/>";
+            }
         } 
         else if($alta == 0) 
         {
